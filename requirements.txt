@@ -1,0 +1,17 @@
+torch
+torchvision
+torchaudio
+transformers
+diffusers
+accelerate
+sentencepiece
+moviepy
+ollama
+kokoro-onnx
+soundfile
+opencv-python
+numpy
+tqdm
+Pillow
+pydantic
+requests
