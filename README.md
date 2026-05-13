@@ -35,7 +35,7 @@ This project is an automated pipeline for generating AI-driven multimedia conten
    ```
 
 ## Author
-**Yahya Boucha**
+**Yahya Bouchak**
 *Student in Master SIIA (Systèmes Intelligents et Intelligence Artificielle)*
 
 ---
