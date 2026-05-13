@@ -17,5 +17,6 @@ __pycache__/
 .windsurf-server/
 .vscode-server/
 .ollama/
+.idea/
 *.log
 pipeline.log
