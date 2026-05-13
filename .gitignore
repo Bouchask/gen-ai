@@ -16,4 +16,6 @@ __pycache__/
 .cursor-server/
 .windsurf-server/
 .vscode-server/
+.ollama/
+*.log
 pipeline.log
