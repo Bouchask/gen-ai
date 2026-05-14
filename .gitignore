@@ -9,6 +9,7 @@ __pycache__/
 *.onnx
 *.bin
 .gemini/
+.env
 .lightning_studio/
 .vscode/
 .npm/

@@ -10,11 +10,17 @@ import torch
 import gc
 from huggingface_hub import login
 from accelerate import Accelerator
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
 from src.generator_script import generate_podcast_script
 from src.generator_audio import generate_audio_files
 from src.generator_avatar import generate_avatars
 from src.generator_animation import animate_avatars
 from src.video_montage import create_montage
+from src.advanced_montage import create_advanced_montage
 
 # Initialize Accelerator
 accelerator = Accelerator()
@@ -64,7 +70,7 @@ def cleanup_old_data():
         else:
             os.makedirs(d, exist_ok=True)
 
-def run_pipeline(topic, cleanup=False):
+def run_pipeline(topic, cleanup=False, advanced=False):
     logger.info("Starting AI Podcast Generation Pipeline")
     if cleanup:
         cleanup_old_data()
@@ -95,7 +101,11 @@ def run_pipeline(topic, cleanup=False):
         cleanup_gpu()
 
         # Step 5: Final Montage
-        final_video = create_montage(animation_data, avatar_paths)
+        if advanced:
+            final_video = create_advanced_montage(animation_data, avatar_paths)
+        else:
+            final_video = create_montage(animation_data, avatar_paths)
+            
         if final_video:
             logger.info(f"Pipeline completed successfully! Final video: {final_video}")
         else:
@@ -109,6 +119,7 @@ if __name__ == "__main__":
     parser.add_argument("--topic", type=str, default="The role of Generative AI in Industrial Manufacturing", 
                         help="The topic for the podcast")
     parser.add_argument("--cleanup", action="store_true", help="Delete all old data before running")
+    parser.add_argument("--advanced", action="store_true", help="Use advanced montage with professional features")
     args = parser.parse_args()
     
-    run_pipeline(args.topic, args.cleanup)
+    run_pipeline(args.topic, args.cleanup, args.advanced)

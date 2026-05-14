@@ -15,3 +15,4 @@ tqdm
 Pillow
 pydantic
 requests
+python-dotenv
